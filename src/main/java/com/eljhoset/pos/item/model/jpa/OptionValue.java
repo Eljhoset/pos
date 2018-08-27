@@ -1,7 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.eljhoset.pos.item.model.jpa;
 
+import com.eljhoset.pos.jpa.model.AccountBaseEntity;
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,20 +19,20 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author Daniel
+ * @author jd-jd
  */
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemOptionValue implements Serializable {
+public class OptionValue extends AccountBaseEntity implements Serializable {
 
     @Id
     @GeneratedValue
     private Long id;
     @NotNull
     @NotBlank
-    @Column(unique = true)
     private String name;
+
 }

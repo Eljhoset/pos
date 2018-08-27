@@ -1,11 +1,14 @@
 package com.eljhoset.pos.item.controller;
 
+import com.eljhoset.pos.item.model.http.ItemResponse;
 import com.eljhoset.pos.item.service.ItemService;
+import java.security.Principal;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 /**
  *
  * @author Daniel
@@ -21,7 +24,7 @@ public class ItemController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getAll() {
-        return ResponseEntity.ok(itemService.findAll(""));
+    public ResponseEntity<Page<ItemResponse>> getAll(Principal principal, Pageable pageable) {
+        return ResponseEntity.ok(itemService.findAll(principal.getName(), pageable));
     }
 }
