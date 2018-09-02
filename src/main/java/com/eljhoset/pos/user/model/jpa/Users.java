@@ -14,8 +14,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  *
@@ -25,7 +28,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 @Getter
 public class Users extends AccountBaseEntity implements Serializable {
 
+    public static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     @Id
+    @Setter
     private String username;
     @NotNull
     @NotBlank
@@ -44,4 +49,9 @@ public class Users extends AccountBaseEntity implements Serializable {
         }
         roles.add(role);
     }
+
+    public void setPassword(String password) {
+        this.password = passwordEncoder.encode(password);
+    }
+
 }

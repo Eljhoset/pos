@@ -37,8 +37,8 @@ public class ItemVariantOption extends AccountBaseEntity implements Serializable
     private Item item;
     @Id
     @ManyToOne(cascade = CascadeType.ALL)
-    private Option options;
-    @OneToMany(orphanRemoval = true)
+    private ItemOption options;
+    @OneToMany(orphanRemoval = true,cascade = CascadeType.ALL)
     @JoinColumns({
         @JoinColumn(referencedColumnName = "item_id", name = "item_id")
         ,@JoinColumn(referencedColumnName = "options_id", name = "options_id")})

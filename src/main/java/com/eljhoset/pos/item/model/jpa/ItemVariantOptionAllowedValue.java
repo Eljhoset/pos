@@ -31,9 +31,9 @@ public class ItemVariantOptionAllowedValue extends AccountBaseEntity implements 
     private Item item;
     @Id
     @ManyToOne
-    private Option options;
+    private ItemOption options;
     @Id
     @ManyToOne
-    private OptionValue optionValue;
+    private ItemOptionValue optionValue;
 
 }

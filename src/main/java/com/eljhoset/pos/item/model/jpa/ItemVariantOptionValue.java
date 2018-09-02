@@ -31,9 +31,9 @@ public class ItemVariantOptionValue extends AccountBaseEntity implements Seriali
     private Item item;
     @Id
     @ManyToOne
-    private Option options;
+    private ItemOption options;
     @Id
     @ManyToOne
-    private OptionValue optionValue;
+    private ItemOptionValue optionValue;
 
 }

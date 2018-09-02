@@ -11,6 +11,7 @@ import com.eljhoset.pos.jpa.model.AccountBaseEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -40,15 +41,15 @@ public class Item extends AccountBaseEntity implements Serializable {
     private Long id;
     @ManyToOne
     @NotNull
-    private transient Category category;
+    private Category category;
     @NotNull
     @NotBlank
     private String name;
     @Size(min = 1)
     @NotNull
-    @OneToMany(mappedBy = "item", orphanRemoval = true)
+    @OneToMany(mappedBy = "item", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<ItemVariant> variants;
-    @OneToMany(mappedBy = "item", orphanRemoval = true)
+    @OneToMany(mappedBy = "item", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<ItemVariantOption> options;
 
     public void addOption(ItemVariantOption itemVariantOption) {

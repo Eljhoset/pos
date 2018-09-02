@@ -10,10 +10,13 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
@@ -46,7 +49,9 @@ public class ItemVariant extends AccountBaseEntity implements Serializable {
     private String sku;
     @NotNull
     private BigDecimal price;
-    @OneToMany(mappedBy = "item", orphanRemoval = true)
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @JoinColumns({
+        @JoinColumn(referencedColumnName = "item_id", name = "item_id")})
     @Size(min = 1)
     @NotNull
     private List<ItemVariantOptionValue> values;

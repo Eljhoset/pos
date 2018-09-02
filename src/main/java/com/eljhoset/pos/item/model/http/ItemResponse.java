@@ -5,8 +5,8 @@ import com.eljhoset.pos.item.model.jpa.Item;
 import com.eljhoset.pos.item.model.jpa.ItemVariant;
 import com.eljhoset.pos.item.model.jpa.ItemVariantOption;
 import com.eljhoset.pos.item.model.jpa.ItemVariantOptionValue;
-import com.eljhoset.pos.item.model.jpa.Option;
-import com.eljhoset.pos.item.model.jpa.OptionValue;
+import com.eljhoset.pos.item.model.jpa.ItemOption;
+import com.eljhoset.pos.item.model.jpa.ItemOptionValue;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,7 +39,7 @@ public class ItemResponse {
         private final Long id;
         private final String name;
 
-        private OptionResponse(Option options) {
+        private OptionResponse(ItemOption options) {
             this.id = options.getId();
             this.name = options.getName();
         }
@@ -51,7 +51,7 @@ public class ItemResponse {
         private final Long id;
         private final String name;
 
-        private OptionValueResponse(OptionValue optionValue) {
+        private OptionValueResponse(ItemOptionValue optionValue) {
             this.id = optionValue.getId();
             this.name = optionValue.getName();
         }

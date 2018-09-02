@@ -8,6 +8,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -21,6 +22,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Transactional
     public Users login(String username, String password) {
         Users users = findUserByUsername(username);
         if (!users.isActive()) {
@@ -29,7 +31,7 @@ public class UserService {
         if (passwordEncoder.matches(password, users.getPassword())) {
             return users;
         } else {
-            throw new BadCredentialsException("External system authentication failed");
+            throw new BadCredentialsException("Authentication failed");
         }
     }
 

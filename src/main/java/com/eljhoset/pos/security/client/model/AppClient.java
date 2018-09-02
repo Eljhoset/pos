@@ -1,6 +1,7 @@
 package com.eljhoset.pos.security.client.model;
 
 import com.eljhoset.pos.jpa.model.BaseEntity;
+import com.eljhoset.pos.user.model.jpa.Users;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 
@@ -22,9 +24,12 @@ import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 public class AppClient extends BaseEntity implements Serializable {
 
     @Id
+    @Setter
     private String clientId;
     private String secret;
+    @Setter
     private int tokenValidity;
+    @Setter
     private int refreshTokenValidity;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -62,6 +67,10 @@ public class AppClient extends BaseEntity implements Serializable {
             scopes = new HashSet<>();
         }
         scopes.add(scope);
+    }
+
+    public void setSecret(String secret) {
+        this.secret = Users.passwordEncoder.encode(secret);
     }
 
     public BaseClientDetails toBaseClientDetails() {

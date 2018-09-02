@@ -12,18 +12,18 @@ import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-/**
- *
- * @author Daniel
- */
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 @Getter
+@FilterDef(name = "ACTIVE_FILTER", defaultCondition = "active='ACTIVE'")
+@Filter(name = "ACTIVE_FILTER")
 public class BaseEntity {
 
     @CreatedBy
